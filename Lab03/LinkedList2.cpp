@@ -52,8 +52,8 @@ class LinkedList {
 				if(temp->next->value > temp->next->next->value) {
 					temp2 = temp->next;
 					temp->next = temp2->next;
+					temp2->next = temp->next->next;
 					temp->next->next = temp2;
-					temp2->next = NULL;
 					
 					delete temp2;
 					temp2 = NULL;
@@ -69,6 +69,8 @@ int main() {
 	LL.append(1);
 	LL.append(3);
 	LL.append(2);
+	LL.append(5);
+	LL.append(4);
 	LL.Display();
 	LL.swapping();
 	LL.Display();
