@@ -42,11 +42,34 @@ class LinkedList {
 				temp = temp->next;
 			}
 		}
+		
+		void swapping(){
+			Node *temp = head;
+			Node *temp2 = NULL;
+			while(temp->next->next != NULL) {
+				cout<< "temp->next : "<<temp->next->value<<endl;
+				cout<< "temp->next->next : "<<temp->next->next->value<<endl;
+				if(temp->next->value > temp->next->next->value) {
+					temp2 = temp->next;
+					temp->next = temp2->next;
+					temp->next->next = temp2;
+					temp2->next = NULL;
+					
+					delete temp2;
+					temp2 = NULL;
+				}
+				temp = temp->next;
+			}
+			delete temp;
+			temp = NULL;
+		}
 };
 int main() {
 	LinkedList LL;
 	LL.append(1);
-	LL.append(2);
 	LL.append(3);
+	LL.append(2);
+	LL.Display();
+	LL.swapping();
 	LL.Display();
 }
