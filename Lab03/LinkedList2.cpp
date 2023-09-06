@@ -47,21 +47,31 @@ class LinkedList {
 			Node *temp = head;
 			Node *temp2 = NULL;
 			while(temp->next->next != NULL) {
-				cout<< "temp->next : "<<temp->next->value<<endl;
-				cout<< "temp->next->next : "<<temp->next->next->value<<endl;
+//				cout<< "temp->next : "<<temp->next->value<<endl;
+//				cout<< "temp->next->next : "<<temp->next->next->value<<endl;
 				if(temp->next->value > temp->next->next->value) {
 					temp2 = temp->next;
 					temp->next = temp2->next;
 					temp2->next = temp->next->next;
 					temp->next->next = temp2;
-					
-					delete temp2;
-					temp2 = NULL;
 				}
 				temp = temp->next;
 			}
-			delete temp;
-			temp = NULL;
+		}
+		
+		string Nodeexists(int val){
+			if(head==NULL){
+				return "False";
+			} else {
+				Node *temp = head;
+				while(temp!=NULL) {
+					if(temp->value == val) {
+						return "True";
+					}
+					temp = temp->next;
+				}
+				return "False";
+			}
 		}
 };
 int main() {
@@ -71,7 +81,8 @@ int main() {
 	LL.append(2);
 	LL.append(5);
 	LL.append(4);
-	LL.Display();
+//	LL.Display();
 	LL.swapping();
 	LL.Display();
+	cout << "Node exists: "<< LL.Nodeexists(7) << endl;
 }
