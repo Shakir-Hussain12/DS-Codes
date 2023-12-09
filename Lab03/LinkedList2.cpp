@@ -37,9 +37,13 @@ class LinkedList {
 		
 		void Display() {
 			Node *temp = head;
-			while(temp != NULL){
-				cout << temp->value << endl;
-				temp = temp->next;
+			if (head == NULL) {
+				cout << "List is empty" << endl;
+			} else {
+				while(temp != NULL){
+					cout << temp->value << endl;
+					temp = temp->next;
+				}
 			}
 		}
 		
@@ -73,6 +77,22 @@ class LinkedList {
 				return "False";
 			}
 		}
+		
+		~LinkedList() {
+			if (head == NULL) {
+				cout << "List is empty" << endl;
+			} else {
+				while(head != NULL) {
+					Node *temp = head;
+					cout << "Deleted " << head->value << endl;
+					head = head->next;
+					if (temp != NULL) {
+						delete temp;
+						temp = NULL;
+					}
+				}
+			}
+		}
 };
 int main() {
 	LinkedList LL;
@@ -81,8 +101,8 @@ int main() {
 	LL.append(2);
 	LL.append(5);
 	LL.append(4);
-//	LL.Display();
 	LL.swapping();
 	LL.Display();
+	LL.~LinkedList();
 	cout << "Node exists: "<< LL.Nodeexists(7) << endl;
 }
