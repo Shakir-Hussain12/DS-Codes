@@ -7,31 +7,52 @@ class Node {
 	public:
 		
 	int value;
-	void *next;
+	Node *next;
 
-	Node (int v, void *nxt = NULL) {
+	Node (int v, Node *nxt = NULL) {
 		value = v;
 		next = nxt;
 	}
 };
 
 class LinkedList {
+	
+	public:
 	Node *head;
 	
 	public:
-		LinkedList(Node* obj){
-			head = obj;
+		LinkedList(){
+			head = NULL;
 		}
 		
 		void Display(){
 			Node *temp = head;
-			cout << temp->value <<endl;
+			while(temp != NULL) {
+				cout << temp->value << endl;
+				temp = temp->next;
+			}
+		}
+		
+		void append(int val, Node* temp) {
+			if(head == NULL) {
+				head = new Node(val);
+				return;
+			} else {
+				if (temp->next == NULL) {
+					temp->next = new Node(val);
+					return;
+				}
+				
+				append(val, temp->next);	
+			}
 		}
 };
 
 int main() {
-	Node* first = new Node(6);
-	LinkedList* LL = new LinkedList(first);
-	LL->Display();
+	LinkedList LL;
+	LL.append(1, LL.head);
+	LL.append(2, LL.head);
+	LL.append(3, LL.head);
+	LL.Display();
 	return 0;
 }
